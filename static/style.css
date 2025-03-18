@@ -1,0 +1,16 @@
+body{
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,0,0,1) 0%, rgba(29,29,29,1) 0%, rgba(62,62,62,1) 100%);
+}
+
+*{
+    color:white;
+    text-align: center;
+    align-items: center;
+    font-family: defaultfont;
+}
+
+@font-face {
+    font-family: defaultfont;
+    src: url(/fonts/norm.ttf);
+}
