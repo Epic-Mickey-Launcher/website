@@ -1,4 +1,5 @@
 .DS_Store
+.idea
 CNAME
 node_modules
 package-lock.json
