@@ -1,6 +1,7 @@
 <script>
-  import { onMount } from "svelte";
+  import {onMount} from "svelte";
   import Stats from "./components/stats.svelte";
+
   let bgs = [
     "main/back1.webp",
     "main/back2.webp",
@@ -32,26 +33,20 @@
     "An amazing way to relive your childhood.",
   ];
 
-  let rand = Math.floor(Math.random() * bgs.length);
-
-  let randquote = Math.floor(Math.random() * quotes.length);
-
-  let curquote = quotes[randquote];
+  let randomBackgroundIndex = Math.floor(Math.random() * bgs.length);
+  let randomQuoteIndex = Math.floor(Math.random() * quotes.length);
+  let currentQuote = quotes[randomQuoteIndex];
   /**
    * @type {any[]}
    */
 
   onMount(async () => {
     document.body.style.background =
-      "url(bg/" + bgs[rand] + ") no-repeat center center fixed";
+      "url(bg/" + bgs[randomBackgroundIndex] + ") no-repeat center center fixed";
     document.body.style.backgroundSize = "cover";
     document.body.style.backgroundAttachment = "fixed";
   });
 
-  /**
-   * @param {string} route
-   * @param {any} data
-   */
   async function POST(route, data, isJson = false) {
     const res = await fetch("https://emlapi.kalsvik.no/" + route, {
       method: "POST",
@@ -63,8 +58,7 @@
       body: JSON.stringify(data),
     });
     if (isJson) {
-      const content = await res.json();
-      return content;
+      return await res.json();
     }
 
     return res.text();
@@ -79,10 +73,8 @@
   style="width:100%;height:88vh; display:flex;align-items:center;flex-direction:column;"
 >
   <div style="position:relative;margin-top: 40vh;">
-    <h1>{curquote}</h1>
-    <a href="" on:click={() => window.open("/download", "_self")}
-      >Download Here</a
-    >
+    <h1>{currentQuote}</h1>
+    <button on:click={() => window.open("/download")} class="downloadButton">Download Here</button>
     <p>
       <button
         on:click={() => window.open("https://discord.gg/EGb3qXVwrv")}
@@ -178,10 +170,22 @@
         transition-duration: 0.2s;
       }
       .socialicons:hover {
-        transform: scale(1.1);
+        transform: scale(1.3);
       }
       .scroll {
         width: max-content;
+      }
+      .downloadButton {
+        transition-duration: 0.3s;
+        font-weight:bold;width:300px;height:80px;border:none;border-radius:10px;background-color:rgb(20,20,20, 0.5);backdrop-filter:blur(5px);font-size: 20px;
+      }
+      .downloadButton:hover {
+        font-size: 25px;
+        transform: scale(1.1);
+      }
+      .downloadButton:active {
+        font-size: 25px;
+        transform: scale(0.9);
       }
     </style>
   </p>
