@@ -13,8 +13,8 @@
 	<div class="header"><button style="background-color: transparent;border:none;" onclick="window.open('/', '_self')" ><img class="headerLogo" src="eml.png" alt="" style="z-index:1; width:300px;" /></button>
 		<span style="margin-right:50px;"></span>
 		<button onclick="OpenLink('/download', '_self')" class="headerButton">Download</button>
-		<button onclick="OpenLink('https://emldocs.kalsvik.no')" class="headerButton">Documentation</button>
-		<button onclick="OpenLink('https://github.com/KjubDusJub/Epic-Mickey-Launcher')" class="headerButton endheaderbuttons">GitHub</button>
+		<button disabled title="Rework in progress!" onclick="OpenLink('https://emldocs.kalsvik.no')" class="headerButton">Documentation</button>
+		<button onclick="OpenLink('https://github.com/Epic-Mickey-Launcher')" class="headerButton endheaderbuttons">GitHub</button>
 
 	</div>
 	<div style="display: contents">%sveltekit.body%</div>
@@ -41,6 +41,10 @@
 
 	.headerButton:hover {
 		background-color: rgb(43, 43, 43);
+	}
+
+	.headerButton:hover:disabled  {
+		color:red;
 	}
 
 	.header {
