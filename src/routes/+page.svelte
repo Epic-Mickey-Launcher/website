@@ -74,7 +74,7 @@
 >
   <div style="position:relative;margin-top: 40vh;">
     <h1>{currentQuote}</h1>
-    <button on:click={() => window.open("/download")} class="downloadButton">Download Here</button>
+    <button on:click={() => window.open("/download", "_self")} class="downloadButton">Download Here</button>
     <p>
       <button
         on:click={() => window.open("https://discord.gg/EGb3qXVwrv")}
