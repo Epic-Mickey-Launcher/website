@@ -1,48 +1,38 @@
-<script>
-  import { onMount } from "svelte";
+<script lang="ts">
 
-  let mods = 0;
-  let accounts = 0;
+    let mods = $state(0);
+    let accounts = $state(0);
 
-  onMount(async () => {
-    let modCount = await GET("mod/count");
-    let userCount = await GET("user/count");
-    mods = Number(modCount);
-    accounts = Number(userCount);
-  });
-
-  /**
-   * @param {string} route
-   * @param {any} data
-   */
-  async function POST(route, data, isJson = false) {
-    const res = await fetch("https://emlapi.kalsvik.no/" + route, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-
-      body: JSON.stringify(data),
+    $effect(async () => {
+        let modCount = await GET("mod/count");
+        let userCount = await GET("user/count");
+        mods = Number(modCount);
+        accounts = Number(userCount);
     });
-    if (isJson) {
-      const content = await res.json();
-      return content;
+
+    async function POST(route: string, data: any, isJson = false) {
+        const res = await fetch("https://emlapi.kalsvik.no/" + route, {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify(data),
+        });
+        if (isJson) {
+            return await res.json();
+        }
+
+        return res.text();
     }
 
-    return res.text();
-  }
-  /**
-   * @param {string} route
-   */
-  export async function GET(route) {
-    const res = await fetch("https://emlapi.kalsvik.no/" + route);
-    const content = await res.text();
-    return content;
-  }
+    export async function GET(route) {
+        const res = await fetch("https://emlapi.kalsvik.no/" + route);
+        return await res.text();
+    }
 </script>
 
 <p>Mods Uploaded: {mods} | Accounts Registered: {accounts}</p>
-
-<hr style="width:300px;" />
+<hr style="width:300px;"/>
 <p>© 2025 Jonas Kalsvik</p>
