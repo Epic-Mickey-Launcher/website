@@ -1,7 +1,7 @@
 <script lang="ts">
-  import Stats from "./components/stats.svelte";
+    import Stats from "./components/stats.svelte";
 
-  let bgs = [
+    let bgs = [
         "main/back1.webp",
         "main/back2.webp",
         "main/back3.jpg",
@@ -36,7 +36,7 @@
     let randomQuoteIndex = Math.floor(Math.random() * quotes.length);
     let currentQuote = quotes[randomQuoteIndex];
 
-    $effect(async () => {
+    $effect(() => {
         document.body.style.background =
             "url(bg/" + bgs[randomBackgroundIndex] + ") no-repeat center center fixed";
         document.body.style.backgroundSize = "cover";
@@ -53,26 +53,26 @@
 >
     <div style="position:relative;margin-top: 40vh;">
         <h1>{currentQuote}</h1>
-        <button class="downloadButton" on:click={() => window.open("/download", "_self")}>Download Here</button>
+        <button class="downloadButton" onclick={() => window.open("/download", "_self")}>Download Here</button>
         <p>
             <button
                     class="socialicons"
-                    on:click={() => window.open("https://discord.gg/EGb3qXVwrv")}
+                    onclick={() => window.open("https://discord.gg/EGb3qXVwrv")}
             ><img alt="" src="discord.svg" style="width:30px;"/></button
             >
             <button
                     class="socialicons"
-                    on:click={() => window.open("https://bsky.app/profile/kalsvik.no")}
+                    onclick={() => window.open("https://bsky.app/profile/kalsvik.no")}
             ><img alt="" src="bsky.svg" style="width:30px;"/></button
             >
             <button
                     class="socialicons"
-                    on:click={() => window.open("https://www.youtube.com/@jonaswkk")}
+                    onclick={() => window.open("https://www.youtube.com/@jonaswkk")}
             ><img alt="" src="youtube.svg" style="width:30px;"/></button
             >
             <button
                     class="socialicons"
-                    on:click={() => window.open("https://github.com/Epic-Mickey-Launcher")}
+                    onclick={() => window.open("https://github.com/Epic-Mickey-Launcher")}
             ><img alt="" src="github.svg" style="width:30px;"/></button
             >
         </p>
