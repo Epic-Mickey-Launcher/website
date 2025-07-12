@@ -8,8 +8,9 @@
     let download_url = $state("");
     let stability = $state("stable");
     let memberCount = $state(0);
+    let memberCountSuffix = $state("")
 
-    $effect(async () => {
+    $effect(() => {
         document.body.style.background =
             "url(bg/" + bgs[rand] + ") no-repeat center center fixed";
         document.body.style.backgroundSize = "cover";
@@ -28,6 +29,21 @@
         fetch("https://emlapi.kalsvik.no/user/count").then(async (response) => {
             let count = await response.text();
             memberCount = Number(count);
+
+	    let futureMemberCount = (memberCount + 1).toString();
+	    if (futureMemberCount.endsWith("1")) {
+		memberCountSuffix = "st";
+	    }
+	    else if (futureMemberCount.endsWith("2")) {
+		memberCountSuffix = "nd";
+	    }
+	    else if (futureMemberCount.endsWith("3")) {
+		memberCountSuffix = "rd";
+	    }
+	    else {
+		memberCountSuffix = "th";
+	    }
+	    
         });
     });
 
@@ -40,7 +56,7 @@
 <main style="display:flex;justify-content:center;height:80vh;">
     <div>
         <h1>Download</h1>
-        <h4>Become our {memberCount + 1}th member today!</h4>
+        <h4>Become our {memberCount + 1}{memberCountSuffix} member today!</h4>
         <p></p>
         <button class="downloadButton" onclick={() => window.open(download_url)}
         >Download Latest Version ({tag_name} {stability})
