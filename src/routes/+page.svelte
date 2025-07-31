@@ -1,3 +1,13 @@
+
+<svelte:head>
+<meta property="og:title" content="Epic Mickey Launcher" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://eml.kalsvik.no" />
+<meta property="og:image" content="https://eml.kalsvik.no/favicon.png" />
+<meta property="og:description" content="Mod Installer & Launcher for all mainline Epic Mickey games." />
+<meta name="theme-color" content="#c021d8">
+</svelte:head>
+
 <script lang="ts">
     import Stats from "./components/stats.svelte";
 
