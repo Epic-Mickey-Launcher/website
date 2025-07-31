@@ -40,12 +40,16 @@
     
 </script>
 
-
+<svelte:head>
 {#if modData != null} 
 	<meta content={modData.Name} property="og:title" />
 	<meta content={modData.Description} property="og:description" />
 	<meta content={SERVER_URL + "mod/download?id=" + modData.ID} property="og:image" />
 	<meta content="#c021d8" data-react-helmet="true" name="theme-color" />
+{/if}
+</svelte:head>
+
+{#if modData != null} 
 
 	<h1>{modData.Name}</h1>
 
