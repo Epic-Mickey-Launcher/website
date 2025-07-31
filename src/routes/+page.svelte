@@ -6,6 +6,7 @@
 <meta property="og:image" content="https://eml.kalsvik.no/favicon.png" />
 <meta property="og:description" content="Mod Installer & Launcher for all mainline Epic Mickey games." />
 <meta name="theme-color" content="#c021d8">
+    <title>Epic Mickey Launcher</title>
 </svelte:head>
 
 <script lang="ts">
@@ -54,9 +55,6 @@
     });
 
 </script>
-<svelte:head>
-    <title>Epic Mickey Launcher</title>
-</svelte:head>
 
 <main
         style="width:100%;height:88vh; display:flex;align-items:center;flex-direction:column;"
