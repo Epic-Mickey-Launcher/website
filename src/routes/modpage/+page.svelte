@@ -1,33 +1,11 @@
 <script lang="ts">
-
-    interface Mod {
-  		ID: string;
-  		Author: string;
-  		Version: number;
-  		Video: string;
- 		Game: string;
-  		Platform: string;
-  		Downloads: number;
-  		Published: boolean;
-  		Name: string;
-  		Description: string;
- 	 	Dependencies: string[];
-  		CachedLikes: number;
-  		Verified: boolean;
-    }
-
     import Stats from "../components/stats.svelte";
     import { POST, GET, GetImagePath, ImageType, SERVER_URL } from "../library/networking"
+    import type { PageServerData } from "./$types";
 
-    let modData: Mod = $state();
+    export let data: PageServerData;
 
-    $effect(async () => {
-	const urlParams = new URLSearchParams(window.location.search);
-	if (!urlParams.has("id")) 
-		    return
-	const id = urlParams.get("id");
-	modData = await POST("mod/get", {ID: id}, true);
-    })
+    let modData: any = data.modData;
 
     function OpenWithEML() {
 	window.open("eml://openmod?id=" + modData.ID, "_blank")
@@ -35,23 +13,18 @@
 
     function DownloadDirect() {
 	window.open(SERVER_URL + "mod/download?id=" + modData.ID, "_blank")
-    }
-
-    
+    } 
+   
 </script>
 
 <svelte:head>
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="https://eml.kalsvik.no" />
 	<meta content="#c021d8" data-react-helmet="true" name="theme-color" />
-{#if modData != null} 
 	<meta content={modData.Name} property="og:title" />
 	<meta content={modData.Description} property="og:description" />
 	<meta content={SERVER_URL + "img/modicon?id=" + modData.ID} property="og:image" />
-{/if}
 </svelte:head>
-
-{#if modData != null} 
 
 	<h1>{modData.Name}</h1>
 
@@ -77,10 +50,6 @@
 	<span>Downloads: {modData.Downloads} | Likes: {modData.CachedLikes}</span>
 
 	<p></p>
-{:else}
-<h1>Loading...</h1>
-{/if}
-
 <hr>
 
 
