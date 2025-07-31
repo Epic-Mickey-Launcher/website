@@ -40,14 +40,13 @@
     
 </script>
 
-<head>
-<meta content={modData.Name} property="og:title" />
-<meta content={modData.Description} property="og:description" />
-<meta content={SERVER_URL + "mod/download?id=" + modData.ID} property="og:image" />
-<meta content="#c021d8" data-react-helmet="true" name="theme-color" />
-</head>
 
 {#if modData != null} 
+	<meta content={modData.Name} property="og:title" />
+	<meta content={modData.Description} property="og:description" />
+	<meta content={SERVER_URL + "mod/download?id=" + modData.ID} property="og:image" />
+	<meta content="#c021d8" data-react-helmet="true" name="theme-color" />
+
 	<h1>{modData.Name}</h1>
 
 	<img style="width:128px;" src={GetImagePath(modData.ID, ImageType.Mod)} alt="mod icon">
