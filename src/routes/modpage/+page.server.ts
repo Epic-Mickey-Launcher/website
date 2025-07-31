@@ -1,6 +1,6 @@
-import { ServerLoad } from "@sveltejs/kit";
+import { error, ServerLoad } from "@sveltejs/kit";
 import { POST } from "../library/networking";
-
+import { marked } from "marked";
 export const prerender = false;
 
 export interface Mod {
@@ -26,11 +26,13 @@ export const load: ServerLoad = async ({ url }) => {
   if (searchParams.has("id")) {
     const id = searchParams.get("id");
     modData = await POST("mod/get", { ID: id }, true);
-
+    if (modData == null) error(404, "Mod does not exist!");
     console.log("got mod: " + modData.ID);
-
+    let markdownDescription = await marked(modData.Description);
+    modData.Description;
     return {
       modData,
+      markdownDescription,
     };
   }
 

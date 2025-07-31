@@ -86,7 +86,7 @@
         </p>
     </div>
 
-    <div style="margin-top:400px;">
+    <div style="margin-top:400px;text-align: center;display:flex;flex-direction: column;">
     <span>
       <span style="font-size:30px;">Support for every Epic Mickey game</span>
       <br/>
@@ -141,10 +141,14 @@
         />
       </p>
     </span>
+    </div>
 
         <Stats></Stats>
 
         <style>
+	    * {
+			text-align:center;
+	    }
             body {
                 background-repeat: no-repeat;
                 background-size: cover;
@@ -164,6 +168,7 @@
             .downloadButton {
                 transition-duration: 0.3s;
                 font-weight: bold;
+		text-align:center;
                 width: 300px;
                 height: 80px;
                 border: none;
@@ -183,5 +188,4 @@
                 transform: scale(0.9);
             }
         </style>
-    </div>
 </main>

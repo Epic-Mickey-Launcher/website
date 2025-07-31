@@ -13,6 +13,6 @@
 
 </script>
 
-<p>Mods Uploaded: {mods} | Accounts Registered: {accounts}</p>
+<p style="text-align: center;">Mods Uploaded: {mods} | Accounts Registered: {accounts}</p>
 <hr style="width:300px;"/>
-<p>© 2025 Jonas Kalsvik</p>
+<p style="text-align: center;">© 2025 Jonas Kalsvik</p>

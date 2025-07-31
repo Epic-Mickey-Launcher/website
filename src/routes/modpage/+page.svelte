@@ -1,11 +1,20 @@
 <script lang="ts">
-    import Stats from "../components/stats.svelte";
-    import { POST, GET, GetImagePath, ImageType, SERVER_URL } from "../library/networking"
-    import type { PageServerData } from "./$types";
+    import DOMPurify from "dompurify";
+import Stats from "../components/stats.svelte";
+    import {GetImagePath, ImageType, SERVER_URL } from "../library/networking"
+    import type { PageProps } from './$types';
 
-    export let data: PageServerData;
-
+    let {data}: PageProps = $props();
+    let sanitizedDescription = $state("");
     let modData: any = data.modData;
+
+    $effect(() => {
+	    sanitizeDescription()
+    })
+
+    function sanitizeDescription() {
+		sanitizedDescription = DOMPurify.sanitize(data.markdownDescription)
+    }
 
     function OpenWithEML() {
 	window.open("eml://openmod?id=" + modData.ID, "_blank")
@@ -26,28 +35,29 @@
 	<meta content={SERVER_URL + "img/modicon?id=" + modData.ID} property="og:image" />
 </svelte:head>
 
-	<h1>{modData.Name}</h1>
+	<div style="display: flex;justify-content: center;flex-direction: column;">
+	<h1 style="text-align: center;">{modData.Name}</h1>
 
-	<img style="width:128px;" src={GetImagePath(modData.ID, ImageType.Mod)} alt="mod icon">
+	<img style="width:128px;text-align: center;" src={GetImagePath(modData.ID, ImageType.Mod)} alt="mod icon">
 	<br/>
 
-	<button onclick={DownloadDirect} style="width:128px;">Download Directly</button>
+	<button onclick={OpenWithEML} style="background-color: purple;width:128px;text-align: center;">Open with EML</button>
 		<br/>
-	<button onclick={OpenWithEML} style="background-color: purple;width:128px;">Open with EML</button>
-	
+	<button onclick={DownloadDirect} style="width:128px;text-align: center;">Download Directly</button>
+	</div>
 	<p></p>
 
 	<span style="justify-content:center; display: flex;">
 		<div style="word-wrap: break-word;max-width:700px; min-width:200px; text-align:left;padding:10px;background-color: rgb(20, 20, 20); border-radius: 5px;">
 		<span style="">
-		{modData.Description}
+			{@html sanitizedDescription}
 		</span>
 		</div>
 	</span>
 
 	<p></p>
 
-	<span>Downloads: {modData.Downloads} | Likes: {modData.CachedLikes}</span>
+	<div style="text-align: center;">Downloads: {modData.Downloads} | Likes: {modData.CachedLikes}</div>
 
 	<p></p>
 <hr>
@@ -57,6 +67,9 @@
 
 <style>
 
+*{
+    text-align: left;
+}
 
 button {
 background-color: rgb(20, 20, 20);

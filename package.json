@@ -20,7 +20,9 @@
 	"type": "module",
 	"dependencies": {
 		"@sveltejs/adapter-node": "^5.2.12",
+		"dompurify": "^3.2.6",
 		"i": "^0.3.7",
+		"marked": "^16.1.1",
 		"npm": "^11.2.0"
 	}
 }
