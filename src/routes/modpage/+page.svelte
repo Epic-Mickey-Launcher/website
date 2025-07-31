@@ -41,11 +41,13 @@
 </script>
 
 <svelte:head>
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://eml.kalsvik.no" />
+	<meta content="#c021d8" data-react-helmet="true" name="theme-color" />
 {#if modData != null} 
 	<meta content={modData.Name} property="og:title" />
 	<meta content={modData.Description} property="og:description" />
-	<meta content={SERVER_URL + "mod/download?id=" + modData.ID} property="og:image" />
-	<meta content="#c021d8" data-react-helmet="true" name="theme-color" />
+	<meta content={SERVER_URL + "img/modicon?id=" + modData.ID} property="og:image" />
 {/if}
 </svelte:head>
 
