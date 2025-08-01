@@ -27,6 +27,7 @@ import Stats from "../components/stats.svelte";
 </script>
 
 <svelte:head>
+	<title>EML Mod | {modData.Name}</title>
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="https://eml.kalsvik.no" />
 	<meta content="#c021d8" data-react-helmet="true" name="theme-color" />
