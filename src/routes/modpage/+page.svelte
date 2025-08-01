@@ -1,6 +1,6 @@
 <script lang="ts">
     import DOMPurify from "dompurify";
-import Stats from "../components/stats.svelte";
+    import Stats from "../components/stats.svelte";
     import {GetImagePath, ImageType, SERVER_URL } from "../library/networking"
     import type { PageProps } from './$types';
 
