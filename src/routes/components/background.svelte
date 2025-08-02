@@ -3,7 +3,7 @@
 
   let background: HTMLDivElement;
   let credit: string = $state("");
-  let imgPath: string = $state("");
+  let imgPath: string = "";
   let { backgroundType } = $props();
 
   $effect(() => {
@@ -14,8 +14,8 @@
     }
 
     let randomIndex = Math.floor(Math.random() * backgroundSet.length);
-
     imgPath = "bg/" + backgroundSet[randomIndex].src;
+    background.style.backgroundImage = `url(${imgPath})`;
 
     let preload = new Image();
     preload.style.display = "none";
@@ -30,11 +30,7 @@
 </script>
 
 <div class="background-placeholder"></div>
-<div
-  style="opacity:0;background-image: url({imgPath});"
-  bind:this={background}
-  class="background"
-></div>
+<div style="opacity:0;" bind:this={background} class="background"></div>
 <span
   style="position: fixed; bottom: 0px; left:0px;background-color: rgba(30, 30, 30, 0.5);padding: 10px;border-radius: 5px;font-size: 12px;"
   >{credit}</span
