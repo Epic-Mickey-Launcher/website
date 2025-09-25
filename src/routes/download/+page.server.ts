@@ -66,6 +66,6 @@ export const load: ServerLoad = async () => {
     memberCountSuffix = "th";
   }
 
-  let formattedMemberCount = String(memberCount) + memberCountSuffix;
+  let formattedMemberCount = String(futureMemberCount) + memberCountSuffix;
   return { releaseInfo, formattedMemberCount };
 };
